@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="pontoeletronico">
+  <ClassDiagramComponents>
+    <Class name="Funcionario" package="pontoeletronico" visibility="public" xPosition="12.0" yPosition="9.0">
+      <Fields>
+        <Field name="matricula" type="String" visibility="private"/>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="horarios" type="String[]" visibility="private"/>
+        <Field name="pontoEletronico" type="ArrayList&lt;String&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="matricula"/>
+          <Argument type="String" name="nome"/>
+          <Argument type="String[]" name="horario"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="adicionarHorario" returnType="void" visibility="public">
+          <Argument type="String" name="batida"/>
+        </Method>
+        <Method name="geraFormato" returnType="String" visibility="public"/>
+        <Method name="faltas" returnType="String" visibility="public"/>
+        <Method name="comparaMatricula" returnType="boolean" visibility="public">
+          <Argument type="String" name="matricula"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GerenciaArquivos" package="pontoeletronico" visibility="public" xPosition="12.0" yPosition="296.0">
+      <Fields>
+        <Field name="destino" type="String" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="criarRelatorio" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Funcionario&gt;" name="pessoas"/>
+        </Method>
+        <Method name="CriarBalanco" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Funcionario&gt;" name="pessoas"/>
+        </Method>
+        <Method name="lerArquivo" returnType="BufferedReader" visibility="public">
+          <Argument type="int" name="arquivo"/>
+        </Method>
+        <Method name="escolheDestino" returnType="String" visibility="public">
+          <Argument type="int" name="arquivo"/>
+        </Method>
+        <Method name="gravarArquivo" returnType="void" visibility="public">
+          <Argument type="int" name="arquivo"/>
+          <Argument type="String" name="frase"/>
+          <Argument type="boolean" name="habilitar"/>
+        </Method>
+        <Method name="alterarLinha" returnType="void" visibility="package">
+          <Argument type="String[]" name="informacoes"/>
+        </Method>
+        <Method name="deletarLinha" returnType="void" visibility="package">
+          <Argument type="String" name="matricula"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GerenciaFuncionario" package="pontoeletronico" visibility="public" xPosition="397.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="cadastroUsuario" returnType="void" visibility="public"/>
+        <Method name="incluirFuncionario" returnType="void" visibility="private"/>
+        <Method name="consultarFuncionario" returnType="void" visibility="private"/>
+        <Method name="alterarFuncionario" returnType="void" visibility="private"/>
+        <Method name="excluirFuncionario" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="GerenciaPonto" package="pontoeletronico" visibility="public" xPosition="612.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="cadastroPonto" returnType="void" visibility="package"/>
+        <Method name="verificaDataHora" returnType="String" visibility="private"/>
+        <Method name="validaData" returnType="boolean" visibility="public">
+          <Argument type="String" name="data"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GerenciaRelatorio" package="pontoeletronico" visibility="public" xPosition="779.0" yPosition="367.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="menuRelatorio" returnType="void" visibility="public"/>
+        <Method name="mapaRelatorio" returnType="void" visibility="public"/>
+        <Method name="balancoFalta" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="InteracaoUsuario" package="pontoeletronico" visibility="public" xPosition="397.0" yPosition="236.0">
+      <Fields>
+        <Field name="imprensa" type="String" visibility="package" isStatic="true" isFinal="true"/>
+        <Field name="GF" type="GerenciaFuncionario" visibility="package" isStatic="true"/>
+        <Field name="GP" type="GerenciaPonto" visibility="package" isStatic="true"/>
+        <Field name="GR" type="GerenciaRelatorio" visibility="package" isStatic="true"/>
+        <Field name="GA" type="GerenciaArquivos" visibility="package" isStatic="true"/>
+        <Field name="entrada" type="Scanner" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="pergunta" returnType="void" visibility="package">
+          <Argument type="String" name="texto"/>
+        </Method>
+        <Method name="resposta" returnType="String" visibility="package"/>
+        <Method name="verificaRegex" returnType="boolean" visibility="package">
+          <Argument type="String" name="entrada"/>
+          <Argument type="String" name="regex"/>
+        </Method>
+        <Method name="buscaMatricula" returnType="String" visibility="package">
+          <Argument type="String" name="matricula"/>
+        </Method>
+        <Method name="verificaMatricula" returnType="boolean" visibility="package">
+          <Argument type="String" name="matricula"/>
+        </Method>
+        <Method name="telaPrincipal" returnType="void" visibility="package"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="verificacao" returnType="String" visibility="public">
+          <Argument type="String" name="texto"/>
+          <Argument type="int" name="tipoVerificao"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="GR" source="pontoeletronico.InteracaoUsuario" target="pontoeletronico.GerenciaRelatorio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="GA" source="pontoeletronico.InteracaoUsuario" target="pontoeletronico.GerenciaArquivos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pontoeletronico.GerenciaPonto" target="pontoeletronico.InteracaoUsuario"/>
+    <IsRelation name="is" source="pontoeletronico.GerenciaRelatorio" target="pontoeletronico.InteracaoUsuario"/>
+    <UseRelation source="pontoeletronico.GerenciaArquivos" target="pontoeletronico.Funcionario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pontoeletronico.GerenciaFuncionario" target="pontoeletronico.InteracaoUsuario"/>
+    <HasRelation name="GP" source="pontoeletronico.InteracaoUsuario" target="pontoeletronico.GerenciaPonto" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="GF" source="pontoeletronico.InteracaoUsuario" target="pontoeletronico.GerenciaFuncionario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
